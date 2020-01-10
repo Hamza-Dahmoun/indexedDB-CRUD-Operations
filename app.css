@@ -28,7 +28,7 @@ html, body {
     letter-spacing: 1px;
     font-size: 18px;
     line-height: 30px;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
 }
