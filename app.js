@@ -14,4 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
 function displayWelcomeScreen() {
     let welcomeScreen = document.getElementById("welcome-screen");
     welcomeScreen.style.display = "flex";
+    welcomeScreen.addEventListener("click", hideWelcomeScreen);
+
+}
+function hideWelcomeScreen() {
+    document.getElementById("welcome-screen").style.display = "none"
 }
