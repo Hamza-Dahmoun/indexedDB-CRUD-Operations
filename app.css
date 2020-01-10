@@ -32,3 +32,8 @@ html, body {
     flex-direction: column;
     justify-content: center;
 }
+#welcome-msg{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
