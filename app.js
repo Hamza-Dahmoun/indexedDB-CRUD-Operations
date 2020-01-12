@@ -8,32 +8,44 @@ document.addEventListener("DOMContentLoaded", function () {
         displayWelcomeScreen("Sorry! Your browser does not support IndexedDB!", true);
     }
     else {
-        //lets create the DB with 2 tables and add 2 authors objects and 6 articles objects to it
-        createSampleData();
+        //lets create the DB with 2 tables and add 1 author object and 2 articles objects to it
+        storeSampleData();
     }
 });
-function createSampleData(){
-    //this function creates and connect to the database, and stores 2 authors objects and 6 articles objects to the database
-    var db; //db is going to be linked to the indexedDB we use
-    let openRequest = indexedDB.open("myDatabase");
-    openRequest.onsuccess = function(event){
-        //assignation of myDatabase to 'db' variable
-        db = event.target.result;
-        displayWelcomeScreen();
-    };
-    openRequest.onerror = function(event){
-        displayWelcomeScreen("Something went wrong when trying to open the database... error code: " + event.target.errorCode, true);
-    }
+
+function storeSampleData(){
+
 }
+function fetchGuidPromis(guidNumber) {
+    // Return a new promise.
+    return new Promise(function (resolve, reject) {
+        let url = "https://helloacm.com/api/guid-generator/?n=" + guidNumber + "&braces&nohyphens&uppercase";
+        fetch(url, {
+            method: 'GET',
+        }).then(result => {
+            console.log(result);
+            return result.json();
+            //the return statements will return an object that we're going to use in the next 'then' ... so this current 'then' will return a promess
+        }).then((ourJsonData) => {
+            console.log(ourJsonData);
+            console.log(ourJsonData.guid[0]);
+            console.log(ourJsonData.guid[0].slice(1, ourJsonData.guid[0].length - 1));
+            resolve(ourJsonData.guid[0].slice(1, ourJsonData.guid[0].length - 1));
+        }).catch((response) => {
+            reject(Error(response));
+        });
+    });
+}
+
 function displayWelcomeScreen(msg, isError) {
     let welcomeMsg = document.getElementById("welcome-screen").querySelector("#welcome-msg");
     let errorMsg = document.getElementById("welcome-screen").querySelector("#error-msg");
-    if(isError){        
+    if (isError) {
         errorMsg.innerHTML = msg;
         errorMsg.style.display = "block";
         welcomeMsg.style.display = "none";
     }
-    else{
+    else {
         errorMsg.style.display = "none";
         welcomeMsg.style.display = "flex";
     }
