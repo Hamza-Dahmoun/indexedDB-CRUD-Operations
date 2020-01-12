@@ -9,14 +9,47 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     else {
         //lets create the DB with 2 tables and add 1 author object and 2 articles objects to it
-        storeSampleData();
+        createMyDB();
     }
 });
+function createMyDB() {
+    //this function creates our indexedDB database 'articlesDB'
+    var db;
 
-function storeSampleData(){
+    // Request version 1 of the database.
+    var request = window.indexedDB.open("articlesDB", 1);
 
+    // This event handles the event whereby a new version of the
+    // database needs to be created. Either one has not been created
+    // before, or a new version number has been submitted via the
+    // window.indexedDB.open line above.
+    request.onupgradeneeded = function (event) {
+        db = request.result;
+
+        db.onerror = function (errorEvent) {
+            document.body.innerHTML += '<li>Error loading database.</li>';
+        };
+
+        var articlesStore = db.createObjectStore("articles", { keyPath: "id"});
+        var authorsStore = db.createObjectStore("authors", { keyPath: "id" });
+        //our DB will have two tables, in each table the key in this table will be incrementing automatically
+        //var articlesStore = db.createObjectStore("articles", { autoIncrement: true });
+        //var authorsStore = db.createObjectStore("authors", { autoIncrement: true });
+
+    };
+
+    request.onerror = function (event) {
+        document.body.innerHTML += '<li>Error loading database.</li>';
+    };
+
+    request.onsuccess = function (event) {
+        document.body.innerHTML += '<li>articlesDB Database initialised successfully.</li>';
+        db = request.result;
+    };
 }
+
 function fetchGuidPromis(guidNumber) {
+    //this function returns an array of guids
     // Return a new promise.
     return new Promise(function (resolve, reject) {
         let url = "https://helloacm.com/api/guid-generator/?n=" + guidNumber + "&braces&nohyphens&uppercase";
@@ -28,9 +61,10 @@ function fetchGuidPromis(guidNumber) {
             //the return statements will return an object that we're going to use in the next 'then' ... so this current 'then' will return a promess
         }).then((ourJsonData) => {
             console.log(ourJsonData);
-            console.log(ourJsonData.guid[0]);
-            console.log(ourJsonData.guid[0].slice(1, ourJsonData.guid[0].length - 1));
-            resolve(ourJsonData.guid[0].slice(1, ourJsonData.guid[0].length - 1));
+            //console.log(ourJsonData.guid[0]);
+            //console.log(ourJsonData.guid[0].slice(1, ourJsonData.guid[0].length - 1));
+            //resolve(ourJsonData.guid[0].slice(1, ourJsonData.guid[0].length - 1));
+            resolve(ourJsonData.guid);
         }).catch((response) => {
             reject(Error(response));
         });
