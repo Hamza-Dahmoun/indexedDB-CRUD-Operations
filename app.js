@@ -30,12 +30,11 @@ function createMyDB() {
             document.body.innerHTML += '<li>Error loading database.</li>';
         };
 
-        var articlesStore = db.createObjectStore("articles", { keyPath: "id"});
+        var articlesStore = db.createObjectStore("articles", { keyPath: "id" });
         var authorsStore = db.createObjectStore("authors", { keyPath: "id" });
         //our DB will have two tables, in each table the key in this table will be incrementing automatically
         //var articlesStore = db.createObjectStore("articles", { autoIncrement: true });
         //var authorsStore = db.createObjectStore("authors", { autoIncrement: true });
-
     };
 
     request.onerror = function (event) {
@@ -44,7 +43,8 @@ function createMyDB() {
 
     request.onsuccess = function (event) {
         document.body.innerHTML += '<li>articlesDB Database initialised successfully.</li>';
-        db = request.result;
+        //db = request.result;
+        storeSampleData();
     };
 }
 
