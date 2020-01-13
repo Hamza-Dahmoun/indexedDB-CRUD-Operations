@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
     else {
         //lets create the DB with 2 tables and add 1 author object and 2 articles objects to it
         createMyDB();
-        injectSpinner(document.getElementById("welcome-msg"));
+        //now lets insert a spinner before ul tag and after p tag
+        injectSpinner(document.getElementById("welcome-msg"), "p");
         //deleteDB();
     }
     document.getElementById("welcome-screen").addEventListener("click", hideWelcomeScreen);;
@@ -235,14 +236,26 @@ function displayWelcomeScreen(msg, isError) {
 
 }
 function hideWelcomeScreen() {
+    //this function is fired when user clicks to hide the welcome msg
+    //it will:
+    //1- hide welcome msg
+    //2- inject a spinner
+    //3- bring all articles from indexedDB
+    //4- fill data brought from indexedDB in article-container elements and append them to .main-content element
+    //5- remove spinner
+
+    //1-
     document.getElementById("welcome-screen").style.display = "none";
-    injectSpinner(document.getElementsByClassName("main-content")[0]);
+    //2-
+    injectSpinner(document.getElementsByClassName("main-content")[0], "br");
+    //3-4-5-
+    bringAllArticles().then(writeArticles()).then(removeSpinner(document.getElementsByClassName("main-content")[0]));
 }
 function removeSpinner(elt){    
     elt.removeChild(elt.querySelector(".spinner"));
 }
-function injectSpinner(elt){
+function injectSpinner(elt, before){
     let spinner = document.createElement("div");
     spinner.classList.add("spinner");
-    elt.insertBefore(spinner, elt.querySelector("ul").nextSibling);
+    elt.insertBefore(spinner, elt.querySelector(before).nextSibling);
 }
