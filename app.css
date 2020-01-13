@@ -170,3 +170,20 @@ html, body {
 #welcome-msg p{
     font-size:22px;
 }
+
+
+.main-content{
+    width:70%;
+    margin-left:auto; margin-right:auto;
+    margin-top:5%;
+}
+@media screen and (max-width: 600px){
+    .main-content{
+        width:90%;
+    }   
+}
+@media screen and (max-width: 300px){
+    .main-content{
+        width:96%;
+    }   
+}
