@@ -47,6 +47,85 @@ function createMyDB() {
         storeSampleData();
     };
 }
+function storeSampleData() {
+    //this function stores sample data: 1 author and two articles
+    let authorName = "Hamza";
+    let authorCountry = "Algeria";
+    let authorId = "";
+    //lets use the api call in fetchGuidPromis() to bring 3 guids from the internet
+    fetchGuidPromis(3).then(
+        function (response) {
+            //var guidsArray = [...response];
+            //each guid we get from the api is srrounded by brackets {}, lets get rid of them
+            var guidsArray = response.map(elt=>elt.slice(1,elt.length-1));
+            console.log("here are the 3 guids i got:");
+            console.log(guidsArray);
+            authorId = guidsArray[0];
+            let author = {
+                id: authorId,
+                name: authorName,
+                country: authorCountry
+            };
+
+            var request = window.indexedDB.open("articlesDB", 1);
+            request.onsuccess = function (event) {
+                //create db object    
+                var db = request.result;
+                //create 'transaction' object
+                var myTransaction = db.transaction("authors", "readwrite");
+                //link to the table named 'authors'
+                var authorsStore = myTransaction.objectStore('authors');
+                //create Request Object to add 'author' object to the 'authors' table
+                var addRequest = authorsStore.add(author);
+
+                addRequest.onsuccess = function (event) {
+                    document.body.innerHTML += '<li>one author inserted to indexedDB successfully.</li>';
+                    //lets now store two articles written by the previous author
+                    let article1 = {
+                        id: guidsArray[1],
+                        authorID: guidsArray[0],
+                        title: "indexedDB CRUD Operations",
+                        date: "01/13/2020",
+                        summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                    };
+                    var myArticlesTransaction = db.transaction("articles", "readwrite");
+                    //link to the table named 'authors'
+                    var articlesStore = myArticlesTransaction.objectStore('articles');
+                    //create Request Object to add 'article' object to the 'articles' table
+                    var addRequest_article1 = articlesStore.add(article1);
+                    addRequest_article1.onsuccess = function(){
+                        document.body.innerHTML += '<li>first article inserted to indexedDB successfully.</li>';     
+                    }
+                    addRequest_article1.onerror = function(event){
+                        document.body.innerHTML += '<li>Error: first article not inserted: ' + event.target.errorCode + ' </li>';
+                    }
+                    let article2 = {
+                        id: guidsArray[2],
+                        authorID: guidsArray[0],
+                        title: "How To Make a Popup?",
+                        date: "01/17/2020",
+                        summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                    };
+                    //create Request Object to add 'article' object to the 'articles' table
+                    addRequest_article2 = articlesStore.add(article2);
+                    addRequest_article2.onsuccess = function(){
+                        document.body.innerHTML += '<li>second article inserted to indexedDB successfully.</li>';     
+                    }
+                    addRequest_article2.onerror = function(event){
+                        document.body.innerHTML += '<li>Error: second article not inserted: ' + event.target.errorCode + ' </li>';
+                    }
+                }
+                addRequest.onerror = function (event) {
+                    document.body.innerHTML += '<li>Error: New Author Not Inserted.' + event.target.errorCode + '</li>';
+                }
+            };
+            request.onerror = function (event) {
+                document.body.innerHTML += '<li>Error when opening DB: ' + event.target.errorCode + '</li>';
+            }
+        }
+    ).catch((err) => { alert(err) }
+    );
+};
 
 function fetchGuidPromis(guidNumber) {
     //this function returns an array of guids
