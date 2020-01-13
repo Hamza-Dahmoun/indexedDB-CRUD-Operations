@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     else {
         //lets create the DB with 2 tables and add 1 author object and 2 articles objects to it
         createMyDB();
+        injectSpinner(document.getElementById("welcome-msg"));
         //deleteDB();
     }
     document.getElementById("welcome-screen").addEventListener("click", hideWelcomeScreen);;
@@ -133,24 +134,24 @@ function storeSampleData() {
                     //create Request Object to add 'article' object to the 'articles' table
                     addRequest_article2 = articlesStore.add(article2);
                     addRequest_article2.onsuccess = function () {
-                        hideSpinner(document.getElementById("welcome-msg"));
+                        removeSpinner(document.getElementById("welcome-msg"));
                         //document.body.innerHTML += '<li>second article inserted to indexedDB successfully.</li>';
                         document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Second article inserted to indexedDB successfully.</li>';
                     }
                     addRequest_article2.onerror = function (event) {
-                        hideSpinner(document.getElementById("welcome-msg"));
+                        removeSpinner(document.getElementById("welcome-msg"));
                         //document.body.innerHTML += '<li>Error: second article not inserted: ' + event.target.errorCode + ' </li>';
                         document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Error: second article not inserted: ' + event.target.errorCode + ' </li>';
                     }
                 }
                 addRequest.onerror = function (event) {
-                    hideSpinner(document.getElementById("welcome-msg"));
+                    removeSpinner(document.getElementById("welcome-msg"));
                     //document.body.innerHTML += '<li>Error: New Author Not Inserted.' + event.target.errorCode + '</li>';
                     document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Error: New Author Not Inserted.' + event.target.errorCode + '</li>';
                 }
             };
             request.onerror = function (event) {
-                hideSpinner(document.getElementById("welcome-msg"));
+                removeSpinner(document.getElementById("welcome-msg"));
                 //document.body.innerHTML += '<li>Error when opening DB: ' + event.target.errorCode + '</li>';
                 document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Error when opening DB: ' + event.target.errorCode + '</li>';
             }
@@ -235,7 +236,13 @@ function displayWelcomeScreen(msg, isError) {
 }
 function hideWelcomeScreen() {
     document.getElementById("welcome-screen").style.display = "none";
+    injectSpinner(document.getElementsByClassName("main-content")[0]);
 }
-function hideSpinner(elt){
-    elt.querySelector(".spinner").style.display = "none";
+function removeSpinner(elt){    
+    elt.removeChild(elt.querySelector(".spinner"));
+}
+function injectSpinner(elt){
+    let spinner = document.createElement("div");
+    spinner.classList.add("spinner");
+    elt.insertBefore(spinner, elt.querySelector("ul").nextSibling);
 }
