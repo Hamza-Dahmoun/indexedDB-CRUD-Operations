@@ -13,12 +13,12 @@ document.addEventListener("DOMContentLoaded", function () {
         //deleteDB();
     }
 });
-function deleteDB(){
+function deleteDB() {
     //this function deletes the articlesDB if it already exists
     //we'll open the connection, then close it, then delete the database
     var request = window.indexedDB.open("articlesDB");
     request.onerror = function (event) {
-        createMyDB();
+        //createMyDB();
     };
     request.onsuccess = function (event) {
         //create db object    
@@ -26,8 +26,8 @@ function deleteDB(){
         db.close();
         //console.log(window.indexedDB.deleteDatabase("articlesDB"));
         window.indexedDB.deleteDatabase("articlesDB");
-        createMyDB();
-    };    
+        //createMyDB();
+    };
 }
 function createMyDB() {
     //this function creates our indexedDB database 'articlesDB'
@@ -44,7 +44,8 @@ function createMyDB() {
         db = request.result;
 
         db.onerror = function (errorEvent) {
-            document.body.innerHTML += '<li>Error loading database.</li>';
+            //document.body.innerHTML += '<li>Error loading database.</li>';
+            document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Error loading database.</li>';
         };
 
         var articlesStore = db.createObjectStore("articles", { keyPath: "id" });
@@ -55,12 +56,13 @@ function createMyDB() {
     };
 
     request.onerror = function (event) {
-        console.log("Error loading database.");
-        document.body.innerHTML += '<li>Error loading database.' + event.target.errorCode + '</li>';
+        //document.body.innerHTML += '<li>Error loading database.' + event.target.errorCode + '</li>';
+        document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Error loading database.' + event.target.errorCode + '</li>';
     };
 
     request.onsuccess = function (event) {
-        document.body.innerHTML += '<li>articlesDB Database initialised successfully.</li>';
+        //document.body.innerHTML += '<li>articlesDB Database initialised successfully.</li>';
+        document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>articlesDB Database initialised successfully.</li>';
         //db = request.result;
         storeSampleData();
     };
@@ -75,7 +77,7 @@ function storeSampleData() {
         function (response) {
             //var guidsArray = [...response];
             //each guid we get from the api is srrounded by brackets {}, lets get rid of them
-            var guidsArray = response.map(elt=>elt.slice(1,elt.length-1));
+            var guidsArray = response.map(elt => elt.slice(1, elt.length - 1));
             console.log("here are the 3 guids i got:");
             console.log(guidsArray);
             authorId = guidsArray[0];
@@ -97,7 +99,8 @@ function storeSampleData() {
                 var addRequest = authorsStore.add(author);
 
                 addRequest.onsuccess = function (event) {
-                    document.body.innerHTML += '<li>one author inserted to indexedDB successfully.</li>';
+                    //document.body.innerHTML += '<li>one author inserted to indexedDB successfully.</li>';
+                    document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>one author inserted to indexedDB successfully.</li>';
                     //lets now store two articles written by the previous author
                     let article1 = {
                         id: guidsArray[1],
@@ -111,11 +114,13 @@ function storeSampleData() {
                     var articlesStore = myArticlesTransaction.objectStore('articles');
                     //create Request Object to add 'article' object to the 'articles' table
                     var addRequest_article1 = articlesStore.add(article1);
-                    addRequest_article1.onsuccess = function(){
-                        document.body.innerHTML += '<li>first article inserted to indexedDB successfully.</li>';     
+                    addRequest_article1.onsuccess = function () {
+                        //document.body.innerHTML += '<li>first article inserted to indexedDB successfully.</li>';                        
+                        document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>first article inserted to indexedDB successfully.</li>';
                     }
-                    addRequest_article1.onerror = function(event){
-                        document.body.innerHTML += '<li>Error: first article not inserted: ' + event.target.errorCode + ' </li>';
+                    addRequest_article1.onerror = function (event) {
+                        document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Error: first article not inserted: ' + event.target.errorCode + ' </li>';
+                        //document.body.innerHTML += '<li>Error: first article not inserted: ' + event.target.errorCode + ' </li>';
                     }
                     let article2 = {
                         id: guidsArray[2],
@@ -126,19 +131,23 @@ function storeSampleData() {
                     };
                     //create Request Object to add 'article' object to the 'articles' table
                     addRequest_article2 = articlesStore.add(article2);
-                    addRequest_article2.onsuccess = function(){
-                        document.body.innerHTML += '<li>second article inserted to indexedDB successfully.</li>';     
+                    addRequest_article2.onsuccess = function () {
+                        //document.body.innerHTML += '<li>second article inserted to indexedDB successfully.</li>';
+                        document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>second article inserted to indexedDB successfully.</li>';
                     }
-                    addRequest_article2.onerror = function(event){
-                        document.body.innerHTML += '<li>Error: second article not inserted: ' + event.target.errorCode + ' </li>';
+                    addRequest_article2.onerror = function (event) {
+                        //document.body.innerHTML += '<li>Error: second article not inserted: ' + event.target.errorCode + ' </li>';
+                        document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Error: second article not inserted: ' + event.target.errorCode + ' </li>';
                     }
                 }
                 addRequest.onerror = function (event) {
-                    document.body.innerHTML += '<li>Error: New Author Not Inserted.' + event.target.errorCode + '</li>';
+                    //document.body.innerHTML += '<li>Error: New Author Not Inserted.' + event.target.errorCode + '</li>';
+                    document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Error: New Author Not Inserted.' + event.target.errorCode + '</li>';
                 }
             };
             request.onerror = function (event) {
-                document.body.innerHTML += '<li>Error when opening DB: ' + event.target.errorCode + '</li>';
+                //document.body.innerHTML += '<li>Error when opening DB: ' + event.target.errorCode + '</li>';
+                document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Error when opening DB: ' + event.target.errorCode + '</li>';
             }
         }
     ).catch((err) => { alert(err) }
