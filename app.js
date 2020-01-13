@@ -249,7 +249,10 @@ function hideWelcomeScreen() {
     //2-
     injectSpinner(document.getElementsByClassName("main-content")[0], "br");
     //3-4-5-
-    bringAllArticles().then(writeArticles()).then(removeSpinner(document.getElementsByClassName("main-content")[0]));
+    bringAllArticles().then(function(response){
+        console.log(response);
+        //writeArticles(response);
+    });//.then(removeSpinner(document.getElementsByClassName("main-content")[0]));
 }
 function removeSpinner(elt){    
     elt.removeChild(elt.querySelector(".spinner"));
@@ -259,3 +262,34 @@ function injectSpinner(elt, before){
     spinner.classList.add("spinner");
     elt.insertBefore(spinner, elt.querySelector(before).nextSibling);
 }
+
+function bringAllArticles(){
+    //this function returns a promiss
+    //it will bring all articles from indexedDB
+    return new Promise(function (resolve, reject){
+        var request = window.indexedDB.open("articlesDB", 1);
+        request.onsuccess = function (event) {
+            var db = request.result;
+            var myTransaction = db.transaction("articles", "readwrite");
+            var articlesStore = myTransaction.objectStore('articles');
+            var getRequest = articlesStore.getAll();
+    
+            getRequest.onsuccess = function (event) {
+                if (event.target.result === undefined) {
+                    reject(undefined);
+                }
+                else {
+                    //return articles object we've got
+                    resolve(event.target.result);
+                }
+            }
+            getRequest.onerror = function (event) {
+                reject(event.target.errorCode);
+            }
+        };
+        request.onerror = function (event) {
+            reject(event.target.errorCode);
+        }
+    });
+}
+
