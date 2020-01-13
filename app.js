@@ -133,20 +133,24 @@ function storeSampleData() {
                     //create Request Object to add 'article' object to the 'articles' table
                     addRequest_article2 = articlesStore.add(article2);
                     addRequest_article2.onsuccess = function () {
+                        hideSpinner(document.getElementById("welcome-msg"));
                         //document.body.innerHTML += '<li>second article inserted to indexedDB successfully.</li>';
                         document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Second article inserted to indexedDB successfully.</li>';
                     }
                     addRequest_article2.onerror = function (event) {
+                        hideSpinner(document.getElementById("welcome-msg"));
                         //document.body.innerHTML += '<li>Error: second article not inserted: ' + event.target.errorCode + ' </li>';
                         document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Error: second article not inserted: ' + event.target.errorCode + ' </li>';
                     }
                 }
                 addRequest.onerror = function (event) {
+                    hideSpinner(document.getElementById("welcome-msg"));
                     //document.body.innerHTML += '<li>Error: New Author Not Inserted.' + event.target.errorCode + '</li>';
                     document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Error: New Author Not Inserted.' + event.target.errorCode + '</li>';
                 }
             };
             request.onerror = function (event) {
+                hideSpinner(document.getElementById("welcome-msg"));
                 //document.body.innerHTML += '<li>Error when opening DB: ' + event.target.errorCode + '</li>';
                 document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Error when opening DB: ' + event.target.errorCode + '</li>';
             }
@@ -230,5 +234,8 @@ function displayWelcomeScreen(msg, isError) {
 
 }
 function hideWelcomeScreen() {
-    document.getElementById("welcome-screen").style.display = "none"
+    document.getElementById("welcome-screen").style.display = "none";
+}
+function hideSpinner(elt){
+    elt.querySelector(".spinner").style.display = "none";
 }
