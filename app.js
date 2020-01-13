@@ -9,9 +9,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     else {
         //lets create the DB with 2 tables and add 1 author object and 2 articles objects to it
-        createMyDB();
+        //createMyDB();
+        deleteDB();
     }
 });
+function deleteDB(){
+    //this function deletes the articlesDB if it already exists
+    //we'll open the connection, then close it, then delete the database
+    var request = window.indexedDB.open("articlesDB");
+    request.onerror = function (event) {
+        createMyDB();
+    };
+    request.onsuccess = function (event) {
+        //create db object    
+        var db = request.result;
+        db.close();
+        //console.log(window.indexedDB.deleteDatabase("articlesDB"));
+        window.indexedDB.deleteDatabase("articlesDB");
+        createMyDB();
+    };    
+}
 function createMyDB() {
     //this function creates our indexedDB database 'articlesDB'
     var db;
@@ -38,7 +55,8 @@ function createMyDB() {
     };
 
     request.onerror = function (event) {
-        document.body.innerHTML += '<li>Error loading database.</li>';
+        console.log("Error loading database.");
+        document.body.innerHTML += '<li>Error loading database.' + event.target.errorCode + '</li>';
     };
 
     request.onsuccess = function (event) {
