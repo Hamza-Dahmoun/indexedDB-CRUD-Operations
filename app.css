@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
 :root {
     --border-color: #efefef;
+    --cool-gray: #4E4F50;
+    --white: #fff;
+    --my-font: 'Noto Serif', serif;
+}
+html{
+    scroll-behavior:smooth;
 }
 
 html, body {
@@ -9,6 +16,126 @@ html, body {
     background-color: #fff;
     font-family: 'Montserrat', sans-serif;
 }
+
+
+
+
+
+#navbar {
+    background-color: var(--cool-gray);
+    color: var(--white);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0px 5px 10px var(--cool-gray);
+    z-index:11;
+}
+
+#navbar .menu-buttons-container {
+    /*this is default css for navbar links: displayed in big screens - not displayed in small screens*/
+    display: flex;
+    background-color: var(--cool-gray);
+    color: var(--white);
+}
+
+#navbar .menu-buttons-container-shown {
+    /*this is css of navbar links in small screens when user click on burger bar icon to display the menu then if user increase screen width
+    it will stay displayed*/
+    display: flex;
+    background-color: var(--cool-gray);
+    color: var(--white);
+}
+
+#navbar .menu-buttons-container-hidden {
+    /*this is css for navbar links: not displayed in small screens (when user click second time on burger bar icon to hide menu) - but displayed on large screens if user increase width of screen*/
+    display: flex;
+    background-color: var(--cool-gray);
+    color: var(--white);
+}
+
+#navbar .aclass {
+    color: var(--white);
+    text-decoration: none;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    transition-duration: 0.5s;
+}
+
+#navbar a:hover {
+    transition-duration: 0.5s;
+    background-color: var(--white);
+    color: var(--cool-gray);
+}
+
+#navbar a:active {
+    background-color: var(--white);
+    color: var(--cool-gray);
+}
+
+#navbar i {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    #navbar .aclass {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #navbar .aclass {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #navbar .menu-buttons-container {
+        display: none;
+    }
+    #navbar .menu-buttons-container-shown {
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+        background-color: var(--cool-gray);
+        color: var(--white);
+        position: absolute;
+        width: 100%;
+        transition-duration: 1.5s;
+        top: 0%;
+        z-index: 10;
+    }
+    #navbar .menu-buttons-container-hidden {
+        display: none;
+        top: -1000%;
+    }
+    #navbar i {
+        display: block;
+        cursor: pointer;
+        width: fit-content;
+        height: fit-content;
+        font-size: 18px;
+        margin: 12px;
+        z-index: 10;
+        border: 2px solid var(--white);
+        border-radius: 2px;
+        padding: 3px;
+    }
+}
+
+
+
+
+
+
+
+
+
 
 #welcome-screen {
     z-index: 100;
