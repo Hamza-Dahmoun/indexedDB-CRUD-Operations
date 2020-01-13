@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     else {
         //lets create the DB with 2 tables and add 1 author object and 2 articles objects to it
-        //createMyDB();
-        deleteDB();
+        createMyDB();
+        //deleteDB();
     }
 });
 function deleteDB(){
@@ -144,6 +144,40 @@ function storeSampleData() {
     ).catch((err) => { alert(err) }
     );
 };
+function getAuthorByID(authorID) {
+    var request = window.indexedDB.open("articlesDB", 1);
+    request.onsuccess = function (event) {
+        //create db object    
+        var db = request.result;
+        //create 'transaction' object
+        var myTransaction = db.transaction("authors", "readwrite");
+        //link to the table named 'authors'
+        var authorsStore = myTransaction.objectStore('authors');
+        //create Request Object to get 'author' object from the 'authors' table
+        //var getRequest = authorsStore.get(parseInt(authorID));//this functions returns the author object without the key
+        var getRequest = authorsStore.get(authorID);
+
+        getRequest.onsuccess = function (event) {
+            if (event.target.result === undefined) {
+                //author not found
+                return undefined;
+                //document.body.innerHTML += '<li>author not found</li>';
+            }
+            else {
+                //return author object we've got
+                return event.target.result;
+                //document.body.innerHTML += '<li> Author Name: ' + event.target.result.name + " - Author Country: " + event.target.result.country + /*' - Author ID: ' + event.target.result.id +*/ '</li>';
+                //alert("his key is: " + event.target.result.getKey());
+            }
+        }
+        getRequest.onerror = function (event) {
+            document.body.innerHTML += '<li>Error: Author Not Fetched. ' + event.target.errorCode + '</li>';
+        }
+    };
+    request.onerror = function (event) {
+        document.body.innerHTML += '<li>Error when opening DB: ' + event.target.errorCode + '</li>';
+    }
+}
 
 function fetchGuidPromis(guidNumber) {
     //this function returns an array of guids
