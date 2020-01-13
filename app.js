@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         createMyDB();
         //deleteDB();
     }
+    document.getElementById("welcome-screen").addEventListener("click", hideWelcomeScreen);;
 });
 function deleteDB() {
     //this function deletes the articlesDB if it already exists
