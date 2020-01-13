@@ -100,7 +100,7 @@ function storeSampleData() {
 
                 addRequest.onsuccess = function (event) {
                     //document.body.innerHTML += '<li>one author inserted to indexedDB successfully.</li>';
-                    document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>one author inserted to indexedDB successfully.</li>';
+                    document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>One author inserted to indexedDB successfully.</li>';
                     //lets now store two articles written by the previous author
                     let article1 = {
                         id: guidsArray[1],
@@ -116,7 +116,7 @@ function storeSampleData() {
                     var addRequest_article1 = articlesStore.add(article1);
                     addRequest_article1.onsuccess = function () {
                         //document.body.innerHTML += '<li>first article inserted to indexedDB successfully.</li>';                        
-                        document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>first article inserted to indexedDB successfully.</li>';
+                        document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>First article inserted to indexedDB successfully.</li>';
                     }
                     addRequest_article1.onerror = function (event) {
                         document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Error: first article not inserted: ' + event.target.errorCode + ' </li>';
@@ -133,7 +133,7 @@ function storeSampleData() {
                     addRequest_article2 = articlesStore.add(article2);
                     addRequest_article2.onsuccess = function () {
                         //document.body.innerHTML += '<li>second article inserted to indexedDB successfully.</li>';
-                        document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>second article inserted to indexedDB successfully.</li>';
+                        document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Second article inserted to indexedDB successfully.</li>';
                     }
                     addRequest_article2.onerror = function (event) {
                         //document.body.innerHTML += '<li>Error: second article not inserted: ' + event.target.errorCode + ' </li>';
@@ -150,7 +150,7 @@ function storeSampleData() {
                 document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Error when opening DB: ' + event.target.errorCode + '</li>';
             }
         }
-    ).catch((err) => { alert(err) }
+    ).catch((err) => { document.getElementById("welcome-msg").querySelector("UL").innerHTML += '<li>Error: Cannot bring Guid from helloacm.com/api! ' + err + '.</li>'; }
     );
 };
 function getAuthorByID(authorID) {

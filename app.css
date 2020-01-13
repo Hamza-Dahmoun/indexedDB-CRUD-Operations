@@ -37,3 +37,9 @@ html, body {
     flex-direction: column;
     justify-content: center;
 }
+#welcome-msg ul{
+    text-align:left;
+}
+#welcome-msg p{
+    font-size:22px;
+}
