@@ -192,10 +192,41 @@ html, body {
 #welcome-msg ul {
     text-align: left;
 }
+#welcome-msg ul li{
+    margin-bottom:1.5%;
+}
 
 #welcome-msg p {
     font-size: 22px;
 }
+@media screen and (max-width: 700px) {
+    #welcome-screen {
+        width: 90%;
+        font-size: 16px;
+        line-height: 25px;
+        word-spacing: 2px;
+    }
+    #welcome-msg ul {
+        padding-left:20px;
+    }
+    #welcome-msg p {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    #welcome-screen {
+        width: 96%;
+        height: 350px;
+        font-size: 14px;
+        line-height: 23px;
+    }
+    #welcome-msg p {
+        font-size: 16px;
+    }
+}
+
+
 
 .main-content {
     width: 70%;
