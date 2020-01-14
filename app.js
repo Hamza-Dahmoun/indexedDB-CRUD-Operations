@@ -320,7 +320,31 @@ function writeArticles(data) {
         articleSummaryContainer.classList.add("article-summary-container");
         articleSummaryContainer.appendChild(articleSummary);
         articleContainer.appendChild(articleSummaryContainer);
-        
+        //3- lets get Article Author
+        getAuthorByID_Promise(data[i].authorID).then(
+            function (result) {
+                /* handle a successful result */
+                //console.log(result);
+                let articleAuthorContainer = document.createElement("div");
+                articleAuthorContainer.classList.add("article-author-container");
+                let authorName = document.createElement("p");
+                authorName.classList.add("author-name");
+                authorName.innerHTML = "<i class=\"fa fa-user\" aria-hidden=\"true\"></i>" + result.name;
+                let authorCountry = document.createElement("p");
+                authorCountry.classList.add("author-country");
+                authorCountry.innerHTML = "<i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i>" + result.country;
+                articleAuthorContainer.appendChild(authorName);
+                articleAuthorContainer.appendChild(authorCountry);
+                articleContainer.appendChild(articleAuthorContainer);
+                let hr = document.createElement("hr");
+                articleContainer.appendChild(hr);
+            },
+            function (error) {
+                /* handle an error */
+                //console.log(error);
+                //do nothing, just keep moving forward;
+            }
+        );
 
 
 
@@ -328,6 +352,43 @@ function writeArticles(data) {
         articleContainer.style.display = "block";
         main_content.appendChild(articleContainer);
     }
-    removeSpinner(main_content);    
+    removeSpinner(main_content);
+}
+
+function getAuthorByID_Promise(authorID) {
+    //this is a promiss that returns an author from the indexedDB using his ID
+    // Return a new promise.
+    return new Promise(function (resolve, reject) {
+        //this is a promise of getting an author using his ID
+        var request = window.indexedDB.open("articlesDB", 1);
+        request.onsuccess = function (event) {
+            //create db object    
+            var db = request.result;
+            //create 'transaction' object
+            var myTransaction = db.transaction("authors", "readwrite");
+            //link to the table named 'authors'
+            var authorsStore = myTransaction.objectStore('authors');
+            //create Request Object to get 'author' object from the 'authors' table
+            //var getRequest = authorsStore.get(parseInt(authorID));//this functions returns the author object without the key
+            var getRequest = authorsStore.get(authorID);
+
+            getRequest.onsuccess = function (event) {
+                if (event.target.result === undefined) {
+                    //author not found
+                    //lets Reject
+                    reject(undefined);
+                }
+                else {
+                    //return author object we've got
+                    //lets Resolve
+                    resolve(event.target.result);
+                }
+            }
+            getRequest.onerror = function (event) {
+                //lets Reject
+                reject(event.target.errorCode);
+            }
+        };
+    });
 }
 
