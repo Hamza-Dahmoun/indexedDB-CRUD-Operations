@@ -72,6 +72,11 @@ html, body {
     color: var(--white);
 }
 
+#navbar .menu-buttons-container .focused {
+    background-color: var(--white);
+    color: var(--cool-gray);
+}
+
 #navbar .menu-buttons-container-shown {
     /*this is css of navbar links in small screens when user click on burger bar icon to display the menu then if user increase screen width
     it will stay displayed*/
@@ -170,7 +175,7 @@ html, body {
     padding: 1%;
     border: 1px solid var(--border-color);
     box-shadow: 0px 5px 10px var(--cool-gray);
-    background-color:#fff;
+    background-color: #fff;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -192,13 +197,15 @@ html, body {
 #welcome-msg ul {
     text-align: left;
 }
-#welcome-msg ul li{
-    margin-bottom:1.5%;
+
+#welcome-msg ul li {
+    margin-bottom: 1.5%;
 }
 
 #welcome-msg p {
     font-size: 22px;
 }
+
 @media screen and (max-width: 700px) {
     #welcome-screen {
         width: 90%;
@@ -207,7 +214,7 @@ html, body {
         word-spacing: 2px;
     }
     #welcome-msg ul {
-        padding-left:20px;
+        padding-left: 20px;
     }
     #welcome-msg p {
         font-size: 20px;
@@ -225,8 +232,6 @@ html, body {
         font-size: 16px;
     }
 }
-
-
 
 .main-content {
     width: 70%;
@@ -247,14 +252,14 @@ html, body {
     }
 }
 
-
-.article-container{
-    display:block;
+.article-container {
+    display: block;
 }
+
 .article-title {
     font-size: 25px;
     letter-spacing: 1px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .article-summary {
@@ -264,15 +269,17 @@ html, body {
     text-align: justify;
 }
 
-.article-author-container .fa{
-    padding-right:5px;
+.article-author-container .fa {
+    padding-right: 5px;
 }
+
 .author-name {
     font-size: 14px;
     margin-bottom: 5px;
     color: var(--light-gray);
-    cursor:pointer;
+    cursor: pointer;
 }
+
 .author-name .fa {
     font-size: 12px;
     margin-right: 3px;
@@ -292,7 +299,7 @@ html, body {
 @media screen and (max-width: 700px) {
     .article-title {
         font-size: 22px;
-    }    
+    }
     .article-summary {
         font-size: 14px;
         line-height: 21px;
@@ -319,7 +326,7 @@ html, body {
 @media screen and (max-width: 350px) {
     .article-title {
         font-size: 20px;
-    }    
+    }
     .article-summary {
         font-size: 12px;
         line-height: 18px;
@@ -348,4 +355,31 @@ hr {
     border-top: 1px solid #cacaca;
     margin-top: 5%;
     margin-bottom: 5%;
+}
+
+#authors-area {
+    width: 70%;
+    margin: 50px auto;
+    background-color: var(--cool-gray);
+    color: #fff;
+    height:300px;
+    text-align:center;
+}
+
+#admin-area {
+    width: 70%;
+    margin: 50px auto;
+    background-color: var(--cool-gray);
+    color: #fff;
+    height:300px;
+    text-align:center;
+}
+
+#about-area {
+    width: 70%;
+    margin: 50px auto;
+    background-color: var(--cool-gray);
+    color: #fff;
+    height:300px;
+    text-align:center;
 }
