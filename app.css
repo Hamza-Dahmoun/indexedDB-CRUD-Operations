@@ -254,6 +254,7 @@ html, body {
 .article-title {
     font-size: 25px;
     letter-spacing: 1px;
+    cursor:pointer;
 }
 
 .article-summary {
@@ -270,6 +271,7 @@ html, body {
     font-size: 14px;
     margin-bottom: 5px;
     color: var(--light-gray);
+    cursor:pointer;
 }
 .author-name .fa {
     font-size: 12px;
