@@ -175,11 +175,13 @@ function getAuthorByID(authorID) {
 
         getRequest.onsuccess = function (event) {
             if (event.target.result === undefined) {
+                console.log("author not found");
                 //author not found
                 return undefined;
                 //document.body.innerHTML += '<li>author not found</li>';
             }
             else {
+                console.log("author found");
                 //return author object we've got
                 return event.target.result;
                 //document.body.innerHTML += '<li> Author Name: ' + event.target.result.name + " - Author Country: " + event.target.result.country + /*' - Author ID: ' + event.target.result.id +*/ '</li>';
@@ -249,31 +251,31 @@ function hideWelcomeScreen() {
     //2-
     injectSpinner(document.getElementsByClassName("main-content")[0], "br");
     //3-4-5-
-    bringAllArticles().then(function(response){
-        console.log(response);
-        //writeArticles(response);
+    bringAllArticles().then(function (response) {
+        //console.log(response);
+        writeArticles(response);
     });//.then(removeSpinner(document.getElementsByClassName("main-content")[0]));
 }
-function removeSpinner(elt){    
+function removeSpinner(elt) {
     elt.removeChild(elt.querySelector(".spinner"));
 }
-function injectSpinner(elt, before){
+function injectSpinner(elt, before) {
     let spinner = document.createElement("div");
     spinner.classList.add("spinner");
     elt.insertBefore(spinner, elt.querySelector(before).nextSibling);
 }
 
-function bringAllArticles(){
+function bringAllArticles() {
     //this function returns a promiss
     //it will bring all articles from indexedDB
-    return new Promise(function (resolve, reject){
+    return new Promise(function (resolve, reject) {
         var request = window.indexedDB.open("articlesDB", 1);
         request.onsuccess = function (event) {
             var db = request.result;
             var myTransaction = db.transaction("articles", "readwrite");
             var articlesStore = myTransaction.objectStore('articles');
             var getRequest = articlesStore.getAll();
-    
+
             getRequest.onsuccess = function (event) {
                 if (event.target.result === undefined) {
                     reject(undefined);
@@ -291,5 +293,41 @@ function bringAllArticles(){
             reject(event.target.errorCode);
         }
     });
+}
+
+function writeArticles(data) {
+    //this function takes 'data' brought from indexedDB and writes them in UI 
+    //'data' is the objects gotten from 'articles' objectStore from indexedDB
+    //console.log(data);
+    let main_content = document.getElementsByClassName("main-content")[0];
+    for (let i = 0; i < data.length; i++) {
+        //console.log(data[i]);
+        //1- lets get Article Title 
+        let articleContainer = document.createElement("div");
+        articleContainer.classList.add("article-container");
+        let articleTitleContainer = document.createElement("div");
+        articleTitleContainer.classList.add("article-title-container");
+        let articleTitle = document.createElement("p");
+        articleTitle.classList.add("article-title");
+        articleTitle.innerText = data[i].title;
+        articleTitleContainer.appendChild(articleTitle);
+        articleContainer.appendChild(articleTitleContainer);
+        //2- lets get Article Summary
+        let articleSummary = document.createElement("p");
+        articleSummary.classList.add("article-summary");
+        articleSummary.innerText = data[i].summary;
+        let articleSummaryContainer = document.createElement("div");
+        articleSummaryContainer.classList.add("article-summary-container");
+        articleSummaryContainer.appendChild(articleSummary);
+        articleContainer.appendChild(articleSummaryContainer);
+        
+
+
+
+
+        articleContainer.style.display = "block";
+        main_content.appendChild(articleContainer);
+    }
+    removeSpinner(main_content);    
 }
 

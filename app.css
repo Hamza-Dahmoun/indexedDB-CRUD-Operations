@@ -217,7 +217,7 @@ html, body {
 
 
 .article-container{
-    display:none;
+    display:block;
 }
 .article-title {
     font-size: 25px;
