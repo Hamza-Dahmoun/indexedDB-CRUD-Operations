@@ -271,7 +271,6 @@ html, body {
     margin-bottom: 5px;
     color: var(--light-gray);
 }
-
 .author-name .fa {
     font-size: 12px;
     margin-right: 3px;
@@ -286,6 +285,60 @@ html, body {
 .author-country .fa {
     font-size: 12px;
     margin-right: 3px;
+}
+
+@media screen and (max-width: 700px) {
+    .article-title {
+        font-size: 22px;
+    }    
+    .article-summary {
+        font-size: 14px;
+        line-height: 21px;
+        word-spacing: 2px;
+    }
+    .author-name {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+    .author-name .fa {
+        font-size: 11px;
+        margin-right: 3px;
+    }
+    .author-country {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    .author-country .fa {
+        font-size: 11px;
+        margin-right: 3px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .article-title {
+        font-size: 20px;
+    }    
+    .article-summary {
+        font-size: 12px;
+        line-height: 18px;
+        word-spacing: 2px;
+    }
+    .author-name {
+        font-size: 10px;
+        margin-bottom: 5px;
+    }
+    .author-name .fa {
+        font-size: 9px;
+        margin-right: 3px;
+    }
+    .author-country {
+        font-size: 10px;
+        margin-top: 5px;
+    }
+    .author-country .fa {
+        font-size: 9px;
+        margin-right: 3px;
+    }
 }
 
 hr {
