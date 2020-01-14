@@ -395,7 +395,7 @@ function getAuthorByID_Promise(authorID) {
 
 
 
-/********************************************* MENU BUTTON CLICKS IN MOBILE DEVICE */
+/********************************************* MENU BUTTON CLICKS EVENT *****************************************************/
 document.querySelector("#navbar i").addEventListener("click", showMenu);
 function showMenu() {
     let menuBtnContainer = document.getElementById("menu-buttons-container");
@@ -415,7 +415,52 @@ function hideMenu() {
     document.querySelector("#navbar i").addEventListener("click", showMenu);
 }
 let menuLinks = document.querySelectorAll("#navbar a");
-for(let i=0; i<menuLinks.length; i++){
+for (let i = 0; i < menuLinks.length; i++) {
     menuLinks[i].addEventListener("click", hideMenu);
+    /*menuLinks[i].addEventListener("click", changeFocus);*/
+    switch (menuLinks[i].getAttribute("href")) {
+        case "#about-area":
+            menuLinks[i].addEventListener("click", show_aboutArea);
+            break;
+        case "#authors-area":
+            menuLinks[i].addEventListener("click", show_authorsArea);
+            break;
+        case "#admin-area":
+            menuLinks[i].addEventListener("click", show_adminArea);
+            break;
+        case "#main-content":
+            menuLinks[i].addEventListener("click", show_mainArea);
+            break;
+    }
 }
+
+function show_aboutArea() {
+    //alert("howing about area");
+    document.getElementsByClassName("main-content")[0].style.display = "none";
+    document.getElementById("authors-area").style.display = "none";
+    document.getElementById("admin-area").style.display = "none";
+    document.getElementById("about-area").style.display = "block";
+}
+function show_adminArea() {
+    //alert("howing adming area");
+    document.getElementsByClassName("main-content")[0].style.display = "none";
+    document.getElementById("authors-area").style.display = "none";
+    document.getElementById("admin-area").style.display = "block";
+    document.getElementById("about-area").style.display = "none";
+}
+function show_authorsArea() {
+    //alert("howing authors area");
+    document.getElementsByClassName("main-content")[0].style.display = "none";
+    document.getElementById("authors-area").style.display = "block";
+    document.getElementById("admin-area").style.display = "none";
+    document.getElementById("about-area").style.display = "none";
+}
+function show_mainArea() {
+    //alert("howing main area");
+    document.getElementsByClassName("main-content")[0].style.display = "block";
+    document.getElementById("authors-area").style.display = "none";
+    document.getElementById("admin-area").style.display = "none";
+    document.getElementById("about-area").style.display = "none";
+}
+
 

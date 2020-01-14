@@ -72,11 +72,6 @@ html, body {
     color: var(--white);
 }
 
-#navbar .menu-buttons-container .focused {
-    background-color: var(--white);
-    color: var(--cool-gray);
-}
-
 #navbar .menu-buttons-container-shown {
     /*this is css of navbar links in small screens when user click on burger bar icon to display the menu then if user increase screen width
     it will stay displayed*/
@@ -102,18 +97,16 @@ html, body {
     font-size: 16px;
     transition-duration: 0.5s;
 }
-
-#navbar a:hover {
+#navbar .aclass:hover {
     transition-duration: 0.5s;
     background-color: var(--white);
     color: var(--cool-gray);
 }
 
-#navbar a:active {
+#navbar .aclass:active {
     background-color: var(--white);
     color: var(--cool-gray);
 }
-
 #navbar i {
     display: none;
 }
@@ -364,6 +357,7 @@ hr {
     color: #fff;
     height:300px;
     text-align:center;
+    display:none;
 }
 
 #admin-area {
@@ -373,6 +367,7 @@ hr {
     color: #fff;
     height:300px;
     text-align:center;
+    display:none;
 }
 
 #about-area {
@@ -382,4 +377,5 @@ hr {
     color: #fff;
     height:300px;
     text-align:center;
+    display:none;
 }
