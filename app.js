@@ -259,15 +259,26 @@ function hideWelcomeScreen() {
 function removeSpinner(elt) {
     elt.removeChild(elt.querySelector(".spinner"));
 }
-function injectSpinner(elt, before) {
+function injectSpinner(elt, ...before) {
+    //"...before" is a rest parameter, it means it can exist and it can not to exist
     let spinner = document.createElement("div");
     spinner.classList.add("spinner");
-    if(elt.querySelector(before) != null){
-        elt.insertBefore(spinner, elt.querySelector(before).nextSibling);
+    if(before.length==0){
+        //so this parameter does not exist in this call, lets inject the spinner directly inside "elt"
+        elt.appendChild(spinner);
+        console.log("without rest parameter");
     }
     else{
+        //so this parameter does exist in this call, lets inject the spinner inside "elt" but before the selector stored in the rest parameter
+        elt.insertBefore(spinner, elt.querySelector(before).nextSibling);
+        console.log("with rest parameter");
+    }
+    /*if (elt.querySelector(before) != null) {
+        elt.insertBefore(spinner, elt.querySelector(before).nextSibling);
+    }
+    else {
         elt.appendChild(spinner);
-    }    
+    }*/
 }
 
 function bringAllArticles() {
@@ -406,8 +417,13 @@ function gotoArticle() {
     //4- get article details and text, and write them in UI
     //5- display article details container
     alert("you clicked on " + event.target.innerText);
+    //1-
+    document.getElementsByClassName("main-content")[0].style.display = "none";
+    //2-
+    let articleDetails = document.getElementById("article-area");
+    articleDetails.style.display = "block";
+    injectSpinner(articleDetails);
 
-    
 
 }
 
