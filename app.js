@@ -309,6 +309,7 @@ function writeArticles(data) {
         articleTitleContainer.classList.add("article-title-container");
         let articleTitle = document.createElement("p");
         articleTitle.classList.add("article-title");
+        articleTitle.addEventListener("click", gotoArticle);
         articleTitle.innerText = data[i].title;
         articleTitleContainer.appendChild(articleTitle);
         articleContainer.appendChild(articleTitleContainer);
@@ -390,6 +391,10 @@ function getAuthorByID_Promise(authorID) {
             }
         };
     });
+}
+
+function gotoArticle(){
+    alert("you clicked on " + event.target.innerText);
 }
 
 
