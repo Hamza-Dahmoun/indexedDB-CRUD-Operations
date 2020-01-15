@@ -262,7 +262,12 @@ function removeSpinner(elt) {
 function injectSpinner(elt, before) {
     let spinner = document.createElement("div");
     spinner.classList.add("spinner");
-    elt.insertBefore(spinner, elt.querySelector(before).nextSibling);
+    if(elt.querySelector(before) != null){
+        elt.insertBefore(spinner, elt.querySelector(before).nextSibling);
+    }
+    else{
+        elt.appendChild(spinner);
+    }    
 }
 
 function bringAllArticles() {
