@@ -393,8 +393,17 @@ function getAuthorByID_Promise(authorID) {
     });
 }
 
-function gotoArticle(){
+function gotoArticle() {
+    //this function will take user to the article content
+    //1- hide 'main-content' that contain all articles (or just hide all areas bcuz i may need to use it somewhere else)
+    //2- display spinner for 1.5s to give the user real feeling of loading the article
+    //3- hide spinner
+    //4- get article details and text, and write them in UI
+    //5- display article details container
     alert("you clicked on " + event.target.innerText);
+
+    
+
 }
 
 

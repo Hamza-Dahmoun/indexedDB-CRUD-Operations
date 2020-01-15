@@ -350,6 +350,12 @@ hr {
     margin-bottom: 5%;
 }
 
+#article-area{
+    width: 70%;
+    margin: 50px auto;
+    color: var(--cool-gray);
+    display:none;
+}
 #authors-area {
     width: 70%;
     margin: 50px auto;
@@ -392,6 +398,9 @@ hr {
     line-height:30px;
 }
 @media screen and (max-width: 650px) {
+    #article-area {
+        width: 90%;
+    }
     #about-area {
         width: 90%;
     }
@@ -409,6 +418,11 @@ hr {
 }
 
 @media screen and (max-width: 350px) {
+    #article-area {
+        width: 96%;
+        padding-left:4px; padding-right:4px;
+        margin: 50px auto;
+    }
     #about-area {
         width: 96%;
         padding-left:4px; padding-right:4px;
@@ -429,6 +443,10 @@ hr {
         }
 }
 @media screen and (max-width: 250px) {
+    #article-area {
+        width: 96%;
+        padding-left:4px; padding-right:4px;
+    }
     #about-area {
         width: 96%;
         padding-left:4px; padding-right:4px;
