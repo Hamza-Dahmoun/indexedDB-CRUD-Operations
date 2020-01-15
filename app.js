@@ -266,19 +266,13 @@ function injectSpinner(elt, ...before) {
     if(before.length==0){
         //so this parameter does not exist in this call, lets inject the spinner directly inside "elt"
         elt.appendChild(spinner);
-        console.log("without rest parameter");
+        //console.log("without rest parameter");
     }
     else{
         //so this parameter does exist in this call, lets inject the spinner inside "elt" but before the selector stored in the rest parameter
         elt.insertBefore(spinner, elt.querySelector(before).nextSibling);
-        console.log("with rest parameter");
+        //console.log("with rest parameter");
     }
-    /*if (elt.querySelector(before) != null) {
-        elt.insertBefore(spinner, elt.querySelector(before).nextSibling);
-    }
-    else {
-        elt.appendChild(spinner);
-    }*/
 }
 
 function bringAllArticles() {
@@ -413,18 +407,33 @@ function gotoArticle() {
     //this function will take user to the article content
     //1- hide 'main-content' that contain all articles (or just hide all areas bcuz i may need to use it somewhere else)
     //2- display spinner for 1.5s to give the user real feeling of loading the article
-    //3- hide spinner
-    //4- get article details and text, and write them in UI
-    //5- display article details container
+    //3- hide spinner,  get article details and text, and write them in UI
     alert("you clicked on " + event.target.innerText);
+    let articleTitleElement = event.target;
     //1-
     document.getElementsByClassName("main-content")[0].style.display = "none";
     //2-
     let articleDetails = document.getElementById("article-area");
     articleDetails.style.display = "block";
     injectSpinner(articleDetails);
+    //3- wait 1.5s, hide spinner and load article
+    setTimeout(function() { 
+        removeSpinner(articleDetails);
+        writeArticleDetails(articleTitleElement);
+     }, 1500);
 
 
+}
+function writeArticleDetails(titleElement){
+//this function use the titleElement to get: article title, article author, article date and article text from the UI (cousins elements)
+//article text is just simulated as the article summary written four times
+
+//1- get article title and write it
+
+//2- get article author and write it
+//3- get article date and write it
+//4- get article author country and write it
+//5- get article summary and write it
 }
 
 
