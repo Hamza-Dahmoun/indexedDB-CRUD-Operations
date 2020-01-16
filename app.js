@@ -428,11 +428,26 @@ function writeArticleDetails(titleElement){
 //this function use the titleElement to get: article title, article author, article date and article text from the UI (cousins elements)
 //article text is just simulated as the article summary written four times
 
+let articleContainer = titleElement.parentNode.parentNode //the result is a div with class article-container;
 
+let articleArea = document.getElementById("article-area");
 //1- get article title and write it
-//2- get article author and write it//3- get article date and write it
+articleArea.querySelector("h1").innerText = titleElement.innerText;
+//console.log(titleElement);
+
+//2- get article author and write it
+articleArea.querySelector("#author-section #name").innerHTML = articleContainer.querySelector(".article-author-container .author-name").innerText;
+//3- get article date and write it
+//articleArea.querySelector("#author-section #date").innerHTML = articleContainer.querySelector(".article-author-container .author-date").innerText;
 //4- get article author country and write it
-//5- get article summary and write it
+articleArea.querySelector("#author-section #country").innerHTML = articleContainer.querySelector(".article-author-container .author-country").innerText;
+//5- get article summary and write it as article body
+let articleSummary = articleContainer.querySelector(".article-container .article-summary-container .article-summary").innerText;
+articleArea.querySelector("#article-area #article-body").innerHTML = "<p>" +
+articleSummary
++ "</p>"
++ "<p>" + articleSummary + " " + articleSummary + "</p>"
++ "<p>" + articleSummary + "</p>";
 }
 
 
