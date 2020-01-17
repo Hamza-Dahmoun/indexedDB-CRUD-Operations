@@ -441,11 +441,13 @@ articleArea.querySelector("h1").innerText = titleElement.innerText;
 //console.log(titleElement);
 
 //2- get article author and write it
-articleArea.querySelector("#author-section #name").innerHTML = articleContainer.querySelector(".article-author-container .author-name").innerText;
+articleArea.querySelector("#author-section #name").innerHTML = articleContainer.querySelector(".article-author-container .author-name").innerHTML;
 //3- get article date and write it
 //articleArea.querySelector("#author-section #date").innerHTML = articleContainer.querySelector(".article-author-container .author-date").innerText;
 //4- get article author country and write it
-articleArea.querySelector("#author-section #country").innerHTML = articleContainer.querySelector(".article-author-container .author-country").innerText;
+articleArea.querySelector("#author-section #country").innerHTML = articleContainer.querySelector(".article-author-container .author-country").innerHTML;
+//4- get article author date and write it
+articleArea.querySelector("#author-section #date").innerHTML = articleContainer.querySelector(".article-author-container .article-date").innerHTML;
 //5- get article summary and write it as article body
 let articleSummary = articleContainer.querySelector(".article-container .article-summary-container .article-summary").innerText;
 articleArea.querySelector("#article-area #article-body").innerHTML = "<p>" +
