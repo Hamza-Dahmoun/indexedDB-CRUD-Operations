@@ -288,6 +288,16 @@ html, body {
     font-size: 12px;
     margin-right: 3px;
 }
+.article-date {
+    font-size: 13px;
+    margin-top: 5px;
+    color: var(--light-gray);
+}
+
+.article-date .fa {
+    font-size: 12px;
+    margin-right: 3px;
+}
 
 @media screen and (max-width: 700px) {
     .article-title {
@@ -311,6 +321,14 @@ html, body {
         margin-top: 5px;
     }
     .author-country .fa {
+        font-size: 11px;
+        margin-right: 3px;
+    }
+    .article-date {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    .article-date .fa {
         font-size: 11px;
         margin-right: 3px;
     }
@@ -338,6 +356,14 @@ html, body {
         margin-top: 5px;
     }
     .author-country .fa {
+        font-size: 9px;
+        margin-right: 3px;
+    }
+    .article-date {
+        font-size: 10px;
+        margin-top: 5px;
+    }
+    .article-date .fa {
         font-size: 9px;
         margin-right: 3px;
     }

@@ -346,7 +346,7 @@ function writeArticles(data) {
                 authorCountry.innerHTML = "<i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i>" + result.country;
                 
                 let authorDate = document.createElement("p");
-                authorDate.classList.add("author-date");
+                authorDate.classList.add("article-date");
                 authorDate.innerHTML = "<i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i>" + data[i].date;
                 articleAuthorContainer.appendChild(authorName);
                 articleAuthorContainer.appendChild(authorCountry);
