@@ -382,6 +382,18 @@ hr {
     color: var(--cool-gray);
     display:none;
 }
+#article-area #author-section i{
+    margin-right:8px;
+}
+#article-area #author-section *{
+    font-size:16px;
+}
+#article-area h1{
+
+}
+#article-area #article-body{
+
+}
 #authors-area {
     width: 70%;
     margin: 50px auto;
