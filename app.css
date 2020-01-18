@@ -5,6 +5,7 @@
     --light-gray: #6E6E6E;
     --white: #fff;
     --my-font: 'Noto Serif', serif;
+    --text-color: #333;
 }
 
 html {
@@ -17,6 +18,7 @@ html, body {
     padding-top: 20px;
     background-color: #fff;
     font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
 }
 
 .spinner {
@@ -97,6 +99,7 @@ html, body {
     font-size: 16px;
     transition-duration: 0.5s;
 }
+
 #navbar .aclass:hover {
     transition-duration: 0.5s;
     background-color: var(--white);
@@ -107,6 +110,7 @@ html, body {
     background-color: var(--white);
     color: var(--cool-gray);
 }
+
 #navbar i {
     display: none;
 }
@@ -288,6 +292,7 @@ html, body {
     font-size: 12px;
     margin-right: 3px;
 }
+
 .article-date {
     font-size: 13px;
     margin-top: 5px;
@@ -376,32 +381,76 @@ hr {
     margin-bottom: 5%;
 }
 
-#article-area{
+#article-area {
     width: 70%;
     margin: 50px auto;
-    color: var(--cool-gray);
-    display:none;
+    display: none;
 }
-#article-area #author-section i{
-    margin-right:8px;
-}
-#article-area #author-section *{
-    font-size:16px;
-}
-#article-area h1{
 
+#article-area #author-section i {
+    margin-right: 8px;
 }
-#article-area #article-body{
 
+#article-area #author-section * {
+    font-size: 16px;
+    color: var(--light-gray);
 }
+
+#article-area h1 {
+    font-size: 35px;
+    line-height: 38px;
+    margin-bottom: 70px;
+    margin-top: 55px;
+    text-align: center;
+}
+
+#article-area #article-body p {
+    font-size: 16px;
+    word-spacing: 2px;
+    line-height: 22px;
+    text-align: justify;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+@media screen and (max-width: 700px) {
+    #article-area h1 {
+        font-size: 22px;
+        line-height: 30px;
+        margin-bottom: 30px;
+        margin-top: 15px;
+    }
+    #article-area #article-body p {
+        font-size: 14px;
+        line-height: 21px;
+    }
+    #article-area #author-section * {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    #article-area h1 {
+        font-size: 20px;
+        line-height: 28px;
+    }
+    #article-area #article-body p {
+        font-size: 12px;
+        line-height: 19px;
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+}
+
 #authors-area {
     width: 70%;
     margin: 50px auto;
     background-color: var(--cool-gray);
     color: #fff;
-    height:300px;
-    text-align:center;
-    display:none;
+    height: 300px;
+    text-align: center;
+    display: none;
 }
 
 #admin-area {
@@ -409,32 +458,35 @@ hr {
     margin: 50px auto;
     background-color: var(--cool-gray);
     color: #fff;
-    height:300px;
-    text-align:center;
-    display:none;
+    height: 300px;
+    text-align: center;
+    display: none;
 }
 
 #about-area {
     width: 70%;
     margin: 100px auto;
-    color: var(--cool-gray);
-    text-align:left;
-    display:none;
-    word-spacing:2px;
-}
-#about-area h2{
-    font-size:35px;
-}
-#about-area p{
-    font-size:22px;
-    line-height:30px;
-    text-align:justify;
+    /*color: var(--cool-gray);*/
+    text-align: left;
+    display: none;
+    word-spacing: 2px;
 }
 
-#about-area ul{
-    font-size:20px;
-    line-height:30px;
+#about-area h2 {
+    font-size: 35px;
 }
+
+#about-area p {
+    font-size: 22px;
+    line-height: 30px;
+    text-align: justify;
+}
+
+#about-area ul {
+    font-size: 20px;
+    line-height: 30px;
+}
+
 @media screen and (max-width: 650px) {
     #article-area {
         width: 90%;
@@ -442,68 +494,72 @@ hr {
     #about-area {
         width: 90%;
     }
-    #about-area h2{
-        font-size:30px;
+    #about-area h2 {
+        font-size: 30px;
     }
-    #about-area p{
-        font-size:18px;
-        line-height:26px;
+    #about-area p {
+        font-size: 18px;
+        line-height: 26px;
     }
-    #about-area ul{
-        font-size:17px;
-        line-height:26px;
+    #about-area ul {
+        font-size: 17px;
+        line-height: 26px;
     }
 }
 
 @media screen and (max-width: 350px) {
     #article-area {
         width: 96%;
-        padding-left:4px; padding-right:4px;
+        padding-left: 4px;
+        padding-right: 4px;
         margin: 50px auto;
     }
     #about-area {
         width: 96%;
-        padding-left:4px; padding-right:4px;
+        padding-left: 4px;
+        padding-right: 4px;
         margin: 50px auto;
     }
-    #about-area h2{
-        font-size:25px;
+    #about-area h2 {
+        font-size: 25px;
     }
-    #about-area p{
-        font-size:16px;
-        line-height:22px;
+    #about-area p {
+        font-size: 16px;
+        line-height: 22px;
     }
-    #about-area ul{
-        font-size:15px;
-        line-height:24px;
-        margin-left:0px;
-        padding-left:0px;
-        }
+    #about-area ul {
+        font-size: 15px;
+        line-height: 24px;
+        margin-left: 0px;
+        padding-left: 0px;
+    }
 }
+
 @media screen and (max-width: 250px) {
     #article-area {
         width: 96%;
-        padding-left:4px; padding-right:4px;
+        padding-left: 4px;
+        padding-right: 4px;
     }
     #about-area {
         width: 96%;
-        padding-left:4px; padding-right:4px;
+        padding-left: 4px;
+        padding-right: 4px;
     }
-    #about-area h2{
-        font-size:22px;
+    #about-area h2 {
+        font-size: 22px;
     }
-    #about-area p{
-        font-size:14px;
-        line-height:20px;
+    #about-area p {
+        font-size: 14px;
+        line-height: 20px;
     }
-    #about-area ul{
-        font-size:13px;
-        line-height:21px;
-        margin-left:0px;
-        padding-left:0px;
-        }
+    #about-area ul {
+        font-size: 13px;
+        line-height: 21px;
+        margin-left: 0px;
+        padding-left: 0px;
+    }
 }
-
 
 footer {
     text-align: center;
