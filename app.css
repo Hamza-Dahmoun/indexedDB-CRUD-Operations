@@ -505,26 +505,74 @@ hr {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-top:35px; margin-bottom:35px;
+    margin-top: 35px;
+    margin-bottom: 35px;
 }
-#authors-area .one-author-section *{    
-    cursor:pointer;
+
+#authors-area .one-author-section * {
+    cursor: pointer;
 }
 
 #authors-area .one-author-section .profile-picture {
     font-size: 70px;
     height: 150px;
-    width: 150px;margin-left:auto; margin-right:auto;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
     line-height: 150px;
     border-radius: 50%;
     background-color: var(--cool-gray);
-    color:var(--white);
+    color: var(--white);
 }
 
 #authors-area .one-author-section p {
-    font-size:18px;
-    margin-top:8px; margin-bottom:8px;
+    font-size: 18px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
+
+@media screen and (max-width: 650px) {
+    #authors-area {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    #authors-area {
+        width: 96%;
+        padding-left: 4px;
+        padding-right: 4px;
+        margin: 50px auto;
+    }
+    #authors-area .one-author-section {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    #authors-area .one-author-section .profile-picture {
+        font-size: 50px;
+        height: 100px;
+        width: 100px;
+        line-height: 100px;
+        border-radius: 50%;
+    }
+    #authors-area .one-author-section p {
+        font-size: 15px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        letter-spacing:1px;
+    }
+}
+@media screen and (max-width: 200px){
+    #authors-area {
+        padding-left: 1px;
+        padding-right: 1px;
+    }
+    #authors-area .one-author-section p {
+        font-size: 13px;
+    }
+}
+
+/****************************** THIS IS THE ADMIN AREA STYLING */
 
 #admin-area {
     width: 70%;
