@@ -229,6 +229,24 @@ html, body {
         font-size: 16px;
     }
 }
+@media screen and (max-width: 250px) {
+    #welcome-screen {
+        width: 96%;
+        height: auto;
+        font-size: 11px;
+        line-height: 16px;
+        padding-top:2px; padding-bottom:2px;
+    }
+    #welcome-msg{
+        padding-top:2px; padding-bottom:2px;
+    }
+    #welcome-msg p {
+        font-size: 14px;
+    }
+    #welcome-msg ul li {
+        margin-bottom: 5px;
+    }
+}
 
 .main-content {
     width: 70%;
