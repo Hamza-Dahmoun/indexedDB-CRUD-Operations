@@ -54,8 +54,8 @@ html, body {
     }
 }
 
-
 /****************************** THIS IS NAVBAR STYLING */
+
 #navbar {
     background-color: var(--cool-gray);
     color: var(--white);
@@ -163,9 +163,8 @@ html, body {
     }
 }
 
-
-
 /****************************** THIS IS THE WELCOME-SCREEN STYLING */
+
 #welcome-screen {
     z-index: 100;
     position: fixed;
@@ -234,16 +233,19 @@ html, body {
         font-size: 16px;
     }
 }
+
 @media screen and (max-width: 250px) {
     #welcome-screen {
         width: 96%;
         height: auto;
         font-size: 11px;
         line-height: 16px;
-        padding-top:2px; padding-bottom:2px;
+        padding-top: 2px;
+        padding-bottom: 2px;
     }
-    #welcome-msg{
-        padding-top:2px; padding-bottom:2px;
+    #welcome-msg {
+        padding-top: 2px;
+        padding-bottom: 2px;
     }
     #welcome-msg p {
         font-size: 14px;
@@ -253,10 +255,8 @@ html, body {
     }
 }
 
-
-
-
 /****************************** THIS IS THE HOME PAGE STYLING */
+
 .main-content {
     width: 70%;
     margin-left: auto;
@@ -408,21 +408,23 @@ hr {
     margin-bottom: 5%;
 }
 
-
-
 /****************************** THIS IS THE ARTICLE DETAILS STYLING */
+
 #article-area {
     width: 70%;
     margin: 50px auto;
     display: none;
 }
+
 #article-area #author-section i {
     margin-right: 8px;
 }
+
 #article-area #author-section * {
     font-size: 16px;
     color: var(--light-gray);
 }
+
 #article-area h1 {
     font-size: 35px;
     line-height: 38px;
@@ -430,6 +432,7 @@ hr {
     margin-top: 55px;
     text-align: center;
 }
+
 #article-area #article-body p {
     font-size: 16px;
     word-spacing: 2px;
@@ -438,12 +441,14 @@ hr {
     margin-bottom: 25px;
     margin-top: 25px;
 }
-@media screen and (max-width: 650px){
+
+@media screen and (max-width: 650px) {
     #article-area {
         width: 90%;
     }
 }
-@media screen and (max-width: 700px) {    
+
+@media screen and (max-width: 700px) {
     #article-area h1 {
         font-size: 22px;
         line-height: 30px;
@@ -478,7 +483,8 @@ hr {
         padding-right: 2px;
     }
 }
-@media screen and (max-width: 350px){
+
+@media screen and (max-width: 350px) {
     #article-area {
         width: 96%;
         padding-left: 4px;
@@ -486,18 +492,38 @@ hr {
     }
 }
 
-
-
-
 /****************************** THIS IS THE AUTHORS LIST STYLING */
+
 #authors-area {
     width: 70%;
     margin: 50px auto;
-    background-color: var(--cool-gray);
-    color: #fff;
-    height: 300px;
     text-align: center;
     display: none;
+}
+
+#authors-area .one-author-section {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:35px; margin-bottom:35px;
+}
+#authors-area .one-author-section *{    
+    cursor:pointer;
+}
+
+#authors-area .one-author-section .profile-picture {
+    font-size: 70px;
+    height: 150px;
+    width: 150px;margin-left:auto; margin-right:auto;
+    line-height: 150px;
+    border-radius: 50%;
+    background-color: var(--cool-gray);
+    color:var(--white);
+}
+
+#authors-area .one-author-section p {
+    font-size:18px;
+    margin-top:8px; margin-bottom:8px;
 }
 
 #admin-area {
@@ -510,9 +536,8 @@ hr {
     display: none;
 }
 
-
-
 /****************************** THIS IS THE ABOUT AREA STYLING */
+
 #about-area {
     width: 70%;
     margin: 100px auto;
@@ -538,7 +563,6 @@ hr {
 }
 
 @media screen and (max-width: 650px) {
-    
     #about-area {
         width: 90%;
     }
@@ -555,7 +579,7 @@ hr {
     }
 }
 
-@media screen and (max-width: 350px) {    
+@media screen and (max-width: 350px) {
     #about-area {
         width: 96%;
         padding-left: 4px;
@@ -578,7 +602,6 @@ hr {
 }
 
 @media screen and (max-width: 250px) {
-    
     #about-area {
         width: 96%;
         padding-left: 4px;
@@ -599,10 +622,8 @@ hr {
     }
 }
 
-
-
-
 /****************************** THIS IS THE FOOTER STYLING */
+
 footer {
     text-align: center;
     width: 100%;
