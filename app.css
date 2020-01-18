@@ -54,6 +54,8 @@ html, body {
     }
 }
 
+
+/****************************** THIS IS NAVBAR STYLING */
 #navbar {
     background-color: var(--cool-gray);
     color: var(--white);
@@ -161,6 +163,9 @@ html, body {
     }
 }
 
+
+
+/****************************** THIS IS THE WELCOME-SCREEN STYLING */
 #welcome-screen {
     z-index: 100;
     position: fixed;
@@ -248,6 +253,10 @@ html, body {
     }
 }
 
+
+
+
+/****************************** THIS IS THE HOME PAGE STYLING */
 .main-content {
     width: 70%;
     margin-left: auto;
@@ -399,21 +408,21 @@ hr {
     margin-bottom: 5%;
 }
 
+
+
+/****************************** THIS IS THE ARTICLE DETAILS STYLING */
 #article-area {
     width: 70%;
     margin: 50px auto;
     display: none;
 }
-
 #article-area #author-section i {
     margin-right: 8px;
 }
-
 #article-area #author-section * {
     font-size: 16px;
     color: var(--light-gray);
 }
-
 #article-area h1 {
     font-size: 35px;
     line-height: 38px;
@@ -421,7 +430,6 @@ hr {
     margin-top: 55px;
     text-align: center;
 }
-
 #article-area #article-body p {
     font-size: 16px;
     word-spacing: 2px;
@@ -430,8 +438,12 @@ hr {
     margin-bottom: 25px;
     margin-top: 25px;
 }
-
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 650px){
+    #article-area {
+        width: 90%;
+    }
+}
+@media screen and (max-width: 700px) {    
     #article-area h1 {
         font-size: 22px;
         line-height: 30px;
@@ -449,6 +461,12 @@ hr {
 }
 
 @media screen and (max-width: 350px) {
+    #article-area {
+        width: 96%;
+        padding-left: 4px;
+        padding-right: 4px;
+        margin: 50px auto;
+    }
     #article-area h1 {
         font-size: 20px;
         line-height: 28px;
@@ -460,7 +478,18 @@ hr {
         padding-right: 2px;
     }
 }
+@media screen and (max-width: 350px){
+    #article-area {
+        width: 96%;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+}
 
+
+
+
+/****************************** THIS IS THE AUTHORS LIST STYLING */
 #authors-area {
     width: 70%;
     margin: 50px auto;
@@ -481,6 +510,9 @@ hr {
     display: none;
 }
 
+
+
+/****************************** THIS IS THE ABOUT AREA STYLING */
 #about-area {
     width: 70%;
     margin: 100px auto;
@@ -506,9 +538,7 @@ hr {
 }
 
 @media screen and (max-width: 650px) {
-    #article-area {
-        width: 90%;
-    }
+    
     #about-area {
         width: 90%;
     }
@@ -525,13 +555,7 @@ hr {
     }
 }
 
-@media screen and (max-width: 350px) {
-    #article-area {
-        width: 96%;
-        padding-left: 4px;
-        padding-right: 4px;
-        margin: 50px auto;
-    }
+@media screen and (max-width: 350px) {    
     #about-area {
         width: 96%;
         padding-left: 4px;
@@ -554,11 +578,7 @@ hr {
 }
 
 @media screen and (max-width: 250px) {
-    #article-area {
-        width: 96%;
-        padding-left: 4px;
-        padding-right: 4px;
-    }
+    
     #about-area {
         width: 96%;
         padding-left: 4px;
@@ -579,6 +599,10 @@ hr {
     }
 }
 
+
+
+
+/****************************** THIS IS THE FOOTER STYLING */
 footer {
     text-align: center;
     width: 100%;
