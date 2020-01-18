@@ -263,12 +263,12 @@ function injectSpinner(elt, ...before) {
     //"...before" is a rest parameter, it means it can exist and it can not to exist
     let spinner = document.createElement("div");
     spinner.classList.add("spinner");
-    if(before.length==0){
+    if (before.length == 0) {
         //so this parameter does not exist in this call, lets inject the spinner directly inside "elt"
         elt.appendChild(spinner);
         //console.log("without rest parameter");
     }
-    else{
+    else {
         //so this parameter does exist in this call, lets inject the spinner inside "elt" but before the selector stored in the rest parameter
         elt.insertBefore(spinner, elt.querySelector(before).nextSibling);
         //console.log("with rest parameter");
@@ -344,7 +344,7 @@ function writeArticles(data) {
                 let authorCountry = document.createElement("p");
                 authorCountry.classList.add("author-country");
                 authorCountry.innerHTML = "<i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i>" + result.country;
-                
+
                 let authorDate = document.createElement("p");
                 authorDate.classList.add("article-date");
                 authorDate.innerHTML = "<i class=\"fa fa-calendar-check-o\" aria-hidden=\"true\"></i>" + data[i].date;
@@ -422,39 +422,39 @@ function gotoArticle() {
     articleDetails.style.display = "block";
     injectSpinner(articleDetails);
     //3- wait 1.5s, hide spinner and load article
-    setTimeout(function() { 
+    setTimeout(function () {
         removeSpinner(articleDetails);
         writeArticleDetails(articleTitleElement);
-     }, 1500);
+    }, 1500);
 
 
 }
-function writeArticleDetails(titleElement){
-//this function use the titleElement to get: article title, article author, article date and article text from the UI (cousins elements)
-//article text is just simulated as the article summary written four times
+function writeArticleDetails(titleElement) {
+    //this function use the titleElement to get: article title, article author, article date and article text from the UI (cousins elements)
+    //article text is just simulated as the article summary written four times
 
-let articleContainer = titleElement.parentNode.parentNode //the result is a div with class article-container;
+    let articleContainer = titleElement.parentNode.parentNode //the result is a div with class article-container;
 
-let articleArea = document.getElementById("article-area");
-//1- get article title and write it
-articleArea.querySelector("h1").innerText = titleElement.innerText;
-//console.log(titleElement);
+    let articleArea = document.getElementById("article-area");
+    //1- get article title and write it
+    articleArea.querySelector("h1").innerText = titleElement.innerText;
+    //console.log(titleElement);
 
-//2- get article author and write it
-articleArea.querySelector("#author-section #name").innerHTML = articleContainer.querySelector(".article-author-container .author-name").innerHTML;
-//3- get article date and write it
-//articleArea.querySelector("#author-section #date").innerHTML = articleContainer.querySelector(".article-author-container .author-date").innerText;
-//4- get article author country and write it
-articleArea.querySelector("#author-section #country").innerHTML = articleContainer.querySelector(".article-author-container .author-country").innerHTML;
-//4- get article author date and write it
-articleArea.querySelector("#author-section #date").innerHTML = articleContainer.querySelector(".article-author-container .article-date").innerHTML;
-//5- get article summary and write it as article body
-let articleSummary = articleContainer.querySelector(".article-container .article-summary-container .article-summary").innerText;
-articleArea.querySelector("#article-area #article-body").innerHTML = "<p>" +
-articleSummary
-+ "</p>"
-+ "<p>" + articleSummary + " " + articleSummary + "</p>"
-+ "<p>" + articleSummary + "</p>";
+    //2- get article author and write it
+    articleArea.querySelector("#author-section #name").innerHTML = articleContainer.querySelector(".article-author-container .author-name").innerHTML;
+    //3- get article date and write it
+    //articleArea.querySelector("#author-section #date").innerHTML = articleContainer.querySelector(".article-author-container .author-date").innerText;
+    //4- get article author country and write it
+    articleArea.querySelector("#author-section #country").innerHTML = articleContainer.querySelector(".article-author-container .author-country").innerHTML;
+    //4- get article author date and write it
+    articleArea.querySelector("#author-section #date").innerHTML = articleContainer.querySelector(".article-author-container .article-date").innerHTML;
+    //5- get article summary and write it as article body
+    let articleSummary = articleContainer.querySelector(".article-container .article-summary-container .article-summary").innerText;
+    articleArea.querySelector("#article-area #article-body").innerHTML = "<p>" +
+        articleSummary
+        + "</p>"
+        + "<p>" + articleSummary + " " + articleSummary + "</p>"
+        + "<p>" + articleSummary + "</p>";
 }
 
 
@@ -514,11 +514,33 @@ function show_adminArea() {
     document.getElementById("about-area").style.display = "none";
 }
 function show_authorsArea() {
+    //this function bring authors data from indexedDB and write them in "#authors-area" and display them
+    //1- hide all other areas
+    //2- display spinner
+    //3- bring authors data from indexedDB
+    //4- write authors data in #authors-area
+    //5- hide spinner
+    //6- display #authors-area
+
+
     //alert("howing authors area");
+
+    //1-
     document.getElementsByClassName("main-content")[0].style.display = "none";
-    document.getElementById("authors-area").style.display = "block";
     document.getElementById("admin-area").style.display = "none";
     document.getElementById("about-area").style.display = "none";
+
+    //2
+    injectSpinner(document.body);
+
+    //3- bring authors data from indexedDB
+    
+    //4- write authors data in #authors-area
+
+    //5-
+    removeSpinner(document.body);
+    //6-
+    document.getElementById("authors-area").style.display = "block";
 }
 function show_mainArea() {
     //alert("howing main area");
