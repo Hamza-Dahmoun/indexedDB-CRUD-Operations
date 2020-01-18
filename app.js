@@ -334,7 +334,7 @@ function writeArticles(data) {
         //3- lets get Article Author
         getAuthorByID_Promise(data[i].authorID).then(
             function (result) {
-                /* handle a successful result */
+                /* handle a successful result (resolve)*/
                 //console.log(result);
                 let articleAuthorContainer = document.createElement("div");
                 articleAuthorContainer.classList.add("article-author-container");
@@ -356,7 +356,7 @@ function writeArticles(data) {
                 articleContainer.appendChild(hr);
             },
             function (error) {
-                /* handle an error */
+                /* handle an error (reject)*/
                 //console.log(error);
                 //do nothing, just keep moving forward;
             }
@@ -396,6 +396,43 @@ function getAuthorByID_Promise(authorID) {
                 }
                 else {
                     //return author object we've got
+                    //lets Resolve
+                    resolve(event.target.result);
+                }
+            }
+            getRequest.onerror = function (event) {
+                //lets Reject
+                reject(event.target.errorCode);
+            }
+        };
+    });
+}
+
+function getAllAuthors_Promise(authorID) {
+    //this is a promiss that returns all authors from the indexedDB
+    // Return a new promise.
+    return new Promise(function (resolve, reject) {
+        //this is a promise of getting all authors
+        var request = window.indexedDB.open("articlesDB", 1);
+        request.onsuccess = function (event) {
+            //create db object    
+            var db = request.result;
+            //create 'transaction' object
+            var myTransaction = db.transaction("authors", "readwrite");
+            //link to the table named 'authors'
+            var authorsStore = myTransaction.objectStore('authors');
+            //create Request Object to get 'author' object from the 'authors' table
+            //var getRequest = authorsStore.get(parseInt(authorID));//this functions returns the author object without the key
+            var getRequest = authorsStore.getAll();
+
+            getRequest.onsuccess = function (event) {
+                if (event.target.result === undefined) {
+                    //no authors
+                    //lets Resolve ... but when writing the authors into the UI we have to check if the array of authors is undefined (this case) we'll write "no authors yet"
+                    resolve(undefined);
+                }
+                else {
+                    //return all authors
                     //lets Resolve
                     resolve(event.target.result);
                 }
@@ -513,6 +550,8 @@ function show_adminArea() {
     document.getElementById("admin-area").style.display = "block";
     document.getElementById("about-area").style.display = "none";
 }
+
+
 function show_authorsArea() {
     //this function bring authors data from indexedDB and write them in "#authors-area" and display them
     //1- hide all other areas
@@ -533,9 +572,64 @@ function show_authorsArea() {
     //2
     injectSpinner(document.body);
 
-    //3- bring authors data from indexedDB
-    
-    //4- write authors data in #authors-area
+    //3- bring authors data from indexedDB ... Promise.then(//4- write authors data in #authors-area)
+    getAllAuthors_Promise().then(
+        function (result) {
+            /* handle a successful result (resolve)*/
+            //we'll write all the authors data into the UI
+            //console.log("here are all the authors: ");
+            //console.log(result);
+            result.forEach((author) => {
+                console.log(author.name);
+                //lets create an .one-author-section div
+                let oneAuthorSection = document.createElement("div");
+                oneAuthorSection.classList.add("one-author-section");
+
+                //lets create a .profile-picture div and write in it, and append it to oneAuthorSection
+                let profilePicture = document.createElement("div");
+                profilePicture.classList.add("profile-picture");
+                profilePicture.innerText = convertFullName_tofirstTwoLetters(author.name);
+                oneAuthorSection.appendChild(profilePicture);
+
+                //lets create a p tag and fill it with author id and append it to oneAuthorSection
+                let authorID = document.createElement("p");
+                authorID.innerText = author.id;
+                authorID.style.display = "none";
+                oneAuthorSection.appendChild(authorID);
+
+                //lets create a p tag and fill it with author full name and append it to oneAuthorSection
+                let authorFullName = document.createElement("p");
+                authorFullName.innerHTML = "<strong>" + author.name + "</strong>";
+                oneAuthorSection.appendChild(authorFullName);
+
+                //lets create a p tag and fill it with author country and append it to oneAuthorSection
+                let authorCountry = document.createElement("p");
+                authorCountry.innerHTML = author.country;
+                oneAuthorSection.appendChild(authorCountry);
+
+                //lets append oneAuthorSection to #authors-area
+                document.getElementById("authors-area").appendChild(oneAuthorSection);
+                document.getElementById("authors-area").appendChild(document.createElement("hr"));
+                /*
+                <div class="one-author-section">
+            <div class="profile-picture">
+                HD
+            </div>
+            <p><strong>Hamza Dahmoun</strong></p>
+            <p>Algeria</p>
+            <p><strong>45</strong> Articles</p>
+        </div>
+        <hr/>
+                 */
+            })
+        },
+        function (error) {
+            /* handle an error (reject)*/
+            //console.log(error);
+            //do nothing
+        }
+    );
+
 
     //5-
     removeSpinner(document.body);
@@ -550,4 +644,13 @@ function show_mainArea() {
     document.getElementById("about-area").style.display = "none";
 }
 
+
+function convertFullName_tofirstTwoLetters(fullName) {
+    //"Hamza Dahmoun" ==> "HD"
+    //"John Doe" ==> "JD"
+    let regex = /\w+/g;
+    let array = fullName.match(regex);
+    if(array.length<2) return array[0].charAt(0);
+    else return array[0].charAt(0) + array[1].charAt(0); 
+}
 
